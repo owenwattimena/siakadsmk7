@@ -1,0 +1,7 @@
+@include('web.templates.head')
+@include('web.templates.header')
+@include('web.templates.nav')
+@include('web.templates.info')
+@yield('body')
+@include('web.templates.footer')
+@include('web.templates.script')
