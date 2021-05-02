@@ -41,10 +41,7 @@ Route::middleware(['guest'])->group(function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/logout', function () {
-        \Auth::logout();
-        return redirect('/');
-    })->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
