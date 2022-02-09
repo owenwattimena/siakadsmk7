@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\AlertFormatter;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -30,7 +31,7 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required'
         ]);
-        $user = User::findOrFail(\Auth::user()->id);
+        $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->name;
         if($user->save()) return redirect()->back()->with(AlertFormatter::success("Profile updated"));
         return redirect()->back()->with(AlertFormatter::danger("Profile failed to update"));
@@ -44,12 +45,12 @@ class ProfileController extends Controller
             'new_password_confirmation' => 'required',
         ]);
 
-        if (!Hash::check($request->password, \Auth::user()->password)) return redirect()->back()->with(AlertFormatter::danger("Your enter wrong password"));
+        if (!Hash::check($request->password, Auth::user()->password)) return redirect()->back()->with(AlertFormatter::danger("Your enter wrong password"));
 
-        $user = User::findOrFail(\Auth::user()->id);
+        $user = User::findOrFail(Auth::user()->id);
         $user->password = Hash::make($request->new_password);
         if( !$user->save() ) return redirect()->back()->with(AlertFormatter::danger("Failed to change password"));
-        \Auth::logout();
+        Auth::logout();
         return redirect()->route('login')->with(AlertFormatter::success("Password successfully changed"));
     }
 
