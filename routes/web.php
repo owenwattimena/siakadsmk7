@@ -91,6 +91,7 @@ Route::middleware(['auth'])->group(function () {
             Route::prefix('{id}/jurusan')->group(function () {
                 Route::get('/', [SemesterJurusanController::class, 'index'])->name('semester-jur.main');
                 Route::post('create', [SemesterJurusanController::class, 'store'])->name('semester-jur.store');
+                Route::put('update', [SemesterJurusanController::class, 'update'])->name('semester-jur.update');
                 Route::put('{semJurId}/status', [SemesterJurusanController::class, 'status'])->name('semester-jur.status');
                 Route::delete('{semJurId}/delete/', [SemesterJurusanController::class, 'delete'])->name('semester-jur.delete');
             });

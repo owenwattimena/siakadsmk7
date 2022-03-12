@@ -39,6 +39,7 @@ class KelasController extends Controller
             ->where('siswa.status_aktif', '=', 1)
             ->where('semester_jurusan.status_aktif', '=', 1)
             ->where('semester.id', '=', $this->semesterAktifId)
+            ->orderBy('angkatan')
             ->get();
         $jurusan = Jurusan::all();
         $data['kelas'] = $kelas;
@@ -289,7 +290,10 @@ class KelasController extends Controller
         $data['kelasId'] = $id;
         $data['peserta'] = $dataKelas;
         // dd($data);
-        return view('admin.kelas.peserta-kelas.index', $data);
+        if(request()->is('nilai*')){
+            return view('admin.kelas.peserta-kelas.index', $data);
+        }
+        return view('admin.kelas.peserta-kelas.index1', $data);
     }
 
     public function addGuruMapel(Request $request)

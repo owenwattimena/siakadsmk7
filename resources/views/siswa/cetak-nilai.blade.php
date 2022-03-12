@@ -31,7 +31,7 @@
 					<center>
 					<font size="15">HASIL BELAJAR SISWA<br>
 					SMK NEGERI 7 AMBON<br>
-					TAHUN AKADEMIK {{ '' }} / {{ '' }} {{ '' }}</font>
+					TAHUN AKADEMIK {{ $semester->tahun_pelajaran }} {{ $semester->jenis_semester % 2 == 0 ? 'GENAP' : 'GANJIL' }}</font>
 					<br>
 					<hr>
 					<br>

@@ -80,7 +80,7 @@
                     <th>Mulai Input Nilai</th>
                     <th>Selesai Input Nilai</th>
                     <th>Status</th>
-                    <th style="width: 200px">Pilihan</th>
+                    <th style="width: 210px">Pilihan</th>
                 </tr>
             </thead>
             @foreach ($semesterJurusan as $key => $value )
@@ -93,6 +93,7 @@
                 <td>{{ $value->tanggal_selesai_input_nilai }}</td>
                 <td><i class="fa fa-{{ $value->status_aktif == 1 ? 'check' : 'ban'}}"></i> {{ $value->status_aktif == 1 ? 'Aktif' : 'Tidak Aktif'}}</td>
                 <td>
+                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit"><i class="fa fa-pencil"></i> Ubah</button>
                     <form action="{{ route('semester-jur.status', [$semester->id ,$value->id]) }}" method="POST" style="display: inline">
                         @csrf
                         @method('put')
@@ -105,6 +106,55 @@
                     </form>
                 </td>
             </tr>
+            <div class="modal fade" id="modal-edit">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="{{ route('semester-jur.update', $semester->id) }}" method="POST">
+                            @csrf
+                            @method('put')
+                            <input type="hidden" name="semester_jurusan_id" value="{{ $value->id }}">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">Ubah Semester Jurusan</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="jurusan">Jurusan</label>
+                                    <select class="form-control" id="jurusan" name="jurusan_id" disabled>
+                                        @foreach ($jurusan as $item)
+                                            <option {{ $value->jurusan_id == $item->id ? "selected" : "" }} value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal_mulai_semester">Tanggal Mulai Pembelajaran</label>
+                                    <input type="date" value="{{ $value->tanggal_mulai_semester }}" class="form-control" id="tanggal_mulai_semester" name="tanggal_mulai_semester" placeholder="[Tanggal Mulai Pembelajaran]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal_selesai_semester">Tanggal Selesai Pembelajaran</label>
+                                    <input type="date" value="{{ $value->tanggal_selesai_semester }}" class="form-control" id="tanggal_selesai_semester" name="tanggal_selesai_semester" placeholder="[Tanggal Selesai Pembelajaran]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal_mulai_input_nilai">Mulai Input Nilai</label>
+                                    <input type="date" value="{{ $value->tanggal_mulai_input_nilai }}" class="form-control" id="tanggal_mulai_input_nilai" name="tanggal_mulai_input_nilai" placeholder="[Mulai Input Nilai]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal_selesai_input_nilai">Selesai Input Nilai</label>
+                                    <input type="date" value="{{ $value->tanggal_selesai_semester }}" class="form-control" id="tanggal_selesai_input_nilai" name="tanggal_selesai_input_nilai" placeholder="[Selesai Input Nilai]">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
             @endforeach
         </table>
     </div>

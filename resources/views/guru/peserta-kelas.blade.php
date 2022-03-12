@@ -46,7 +46,7 @@
                         
                       </tr>                     
                       <tr>
-                        <td width="250px"><input class="btn " type="file" name="import_file" required/></td>
+                        <td width="250px"><input class="btn " type="file" name="import_file" required accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/></td>
                         <td align="left"><button class="btn btn-primary" type="submit">Import Nilai</button></td>     
                       </tr>                      
                     </tbody>

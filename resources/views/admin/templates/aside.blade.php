@@ -49,7 +49,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ (request()->is('kelas/register-siswa*')) ? 'active' : '' }}"><a href="{{ route('kelas.register-siswa') }}"><i class="fa fa-circle-o"></i> <span>Register Siswa</span></a></li>
-                    <li class="{{ (request()->is('kelas/register-kelas*')) ? 'active' : '' }}"><a href="{{ route('kelas.register-kelas') }}"><i class="fa fa-circle-o"></i> <span>Register Kelas</span></a></li>
+                    <li class="{{ (request()->is('kelas/register-kelas*')) ? 'active' : '' }}"><a href="{{ route('kelas.register-kelas') }}"><i class="fa fa-circle-o"></i> <span>Register Kelas Mapel</span></a></li>
                 </ul>
             </li>
             <li class="treeview {{ (request()->is('nilai*')) ? 'active' : '' }}">

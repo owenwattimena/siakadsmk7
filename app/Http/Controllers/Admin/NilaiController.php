@@ -12,9 +12,11 @@ use App\Models\Semester;
 use App\Imports\NilaiImport;
 use Illuminate\Http\Request;
 use App\Exports\PesertaExport;
+use App\Helpers\AlertFormatter;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\SemesterJurusan;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -22,7 +24,7 @@ class NilaiController extends Controller
 {
 
     protected $semesterAktifId;
-
+    protected $semesterAktif;
     public function __construct()
     {
         $semesterAktif = Semester::where('is_aktif', 1)->first();
@@ -69,8 +71,26 @@ class NilaiController extends Controller
 
     public function importNilai(Request $request, $kelasId)
     {
-        Excel::import(new NilaiImport($kelasId), $request->file('import_file'));
-        return back();
+        $kelas = DB::table('kelas')
+            ->join('semester_jurusan', 'kelas.semester_jurusan_id', 'semester_jurusan.id')
+            ->select('kelas.nama', 'kelas.mapel_kuri_id', 'semester_jurusan.status_aktif', 'semester_jurusan.tanggal_mulai_input_nilai', 'semester_jurusan.tanggal_selesai_input_nilai')
+            ->where('kelas.id', $kelasId)
+            ->first();
+        if($kelas->status_aktif == 1){
+
+            $masaInputNilai = Carbon::parse($kelas->tanggal_mulai_input_nilai)->isoFormat('D MMMM Y') . " s/d " . Carbon::parse($kelas->tanggal_selesai_input_nilai)->isoFormat('D MMMM Y');
+
+            if(Carbon::now()->toDateString() < Carbon::parse($kelas->tanggal_mulai_input_nilai)->toDateString()){
+                return redirect()->back()->with(AlertFormatter::danger('Belum masuk masa input nilai. Masa input nilai adalah ' . $masaInputNilai));
+            }
+            if(Carbon::now()->toDateString() > Carbon::parse($kelas->tanggal_selesai_input_nilai)->toDateString()){
+                return redirect()->back()->with(AlertFormatter::danger('Telah melewati masa input nilai. Masa input nilai adalah ' . $masaInputNilai));
+            }
+            
+            Excel::import(new NilaiImport($kelasId), $request->file('import_file'));
+            return back();
+        }
+        return redirect()->back()->with(AlertFormatter::danger('Kelas ini tidak terdaftar di semester aktif'));
     }
 
     public function cetakNilai(Request $request, $kelasId)
@@ -90,6 +110,8 @@ class NilaiController extends Controller
         $data['today'] = Carbon::now()->isoFormat('D MMMM Y');
         $data['siswa'] = Siswa::where('nis', $nis)->first();
         $data['nilai'] = Nilai::nilaiSemester($nis, $semesterId);
+        $data['semester'] = Semester::find($semesterId)->first();
+
         $pdf = PDF::loadView('siswa.cetak-nilai', $data);
         if($request->cetak == 1) return $pdf->stream('nilai-semester.pdf'); 
         return $pdf->download('nilai-semester.pdf');
