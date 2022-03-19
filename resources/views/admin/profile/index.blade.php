@@ -62,6 +62,34 @@
                                             </span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text" name="email" value="{{ \Auth::user()->email }}"
+                                                class="form-control" id="inputEmail" placeholder="Email">
+                                        </div>
+                                        @error('email')
+                                            <span class="text-danger">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    @if(Auth::user()->level_id == 1 || Auth::user()->level_id == 2)
+                                    <div class="form-group">
+                                        <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text" name="username" value="{{ \Auth::user()->username }}"
+                                                class="form-control" id="inputUsername" placeholder="Email">
+                                        </div>
+                                        @error('email')
+                                            <span class="text-danger">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    @endif
 
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">

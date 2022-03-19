@@ -19,6 +19,7 @@
     <div class="box-header">
         <h3 class="box-title">Daftar Siswa</h3>
         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Tambah</button>
+        <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-import-siswa"><i class="fa fa-plus"></i> Import Siswa</button>
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -72,6 +73,36 @@
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
+                    </div>
+                </form>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <div class="modal fade" id="modal-import-siswa">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Import Siswa</h4>
+                        </div>
+                        <div class="modal-body">
+                            <a href=""><i class="fa fa-file-pdf"></i> Unduh Excel</a>
+                            <table class="table">
+                                <tr>
+                                    <td width="250px"><input type="file" name="import_file" required /></td>
+                                    <td align="left"><button type="submit" class="btn btn-primary">Import Siswa</button></td>   
+                                </tr>
+                            </table>
+                        </div>
+                        {{-- <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div> --}}
                     </div>
                 </form>
                 <!-- /.modal-content -->

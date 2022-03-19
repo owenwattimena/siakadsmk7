@@ -29,10 +29,13 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'email' => 'email|required',
         ]);
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->name;
+        $user->email = $request->email;
+        $user->username = $request->username;
         if($user->save()) return redirect()->back()->with(AlertFormatter::success("Profile updated"));
         return redirect()->back()->with(AlertFormatter::danger("Profile failed to update"));
     }
