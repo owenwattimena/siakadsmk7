@@ -17,6 +17,7 @@ class CreateDbsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('semester_jurusan_id');
             $table->bigInteger('siswa_nis');
+            $table->tinyInteger('paket_semester');
             $table->timestamps();
 
             $table->foreign('semester_jurusan_id')->references('id')->on('semester_jurusan');

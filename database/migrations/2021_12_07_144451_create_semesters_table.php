@@ -19,6 +19,8 @@ class CreateSemestersTable extends Migration
             $table->date('tanggal_selesai');
             $table->string('tahun_pelajaran');
             $table->string('nama_semester');
+            $table->tinyInteger('jenis_semester');
+            $table->tinyInteger('is_aktif')->default(1);
             $table->timestamps();
         });
     }

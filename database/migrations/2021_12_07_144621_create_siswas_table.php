@@ -19,8 +19,13 @@ class CreateSiswasTable extends Migration
             $table->string('nama', 60);          #Nama Siswa
             $table->string('jurusan_kode');      #Kode Jurusan
             $table->integer('angkatan');         #Tahun angkatan
+            $table->string('kelompok', 1);
+            $table->tinyInteger('status_aktif')->default(1);
+            $table->unsignedBigInteger('jurusan_id');
+            $table->unsignedBigInteger('kurikulum_id');
             $table->timestamps();
-
+            
+            $table->foreign('jurusan_id')->references('id')->on('jurusan');
             $table->foreign('jurusan_kode')->references('kode')->on('jurusan');
         });
     }

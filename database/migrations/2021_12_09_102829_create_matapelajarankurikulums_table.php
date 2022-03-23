@@ -18,6 +18,7 @@ class CreateMatapelajarankurikulumsTable extends Migration
             $table->string('nama', 60);
             $table->unsignedBigInteger('kurikulum_id');
             $table->tinyInteger('semester');
+            $table->double('skm');
             $table->timestamps();
 
             $table->foreign('kurikulum_id')->references('id')->on('kurikulum');

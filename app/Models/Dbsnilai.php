@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Dbsnilai extends Model
 {
     use HasFactory;
+    protected $timestamps = false;
 }

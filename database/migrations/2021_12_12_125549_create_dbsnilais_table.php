@@ -16,11 +16,21 @@ class CreateDbsnilaisTable extends Migration
         Schema::create('dbs_nilai', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dbs_detail_id');
-            $table->float('nilai_pengetahuan');
-            $table->float('nilai_ketrampilan');
-            $table->float('nilai_akhir');
-            $table->float('kehadiran');
-            $table->timestamps();
+            $table->float('kd1');
+            $table->float('kd2');
+            $table->float('kd3');
+            $table->float('kd4');
+            $table->float('kd5');
+            $table->float('kd6');
+            $table->float('kd7');
+            $table->float('kd8');
+            $table->float('kd9');
+            $table->float('kd10');
+            $table->float('rata_rata_kd');
+            $table->float('pts');
+            $table->float('pas');
+            $table->float('n_raport_pengetahuan');
+            $table->string('predikat');
         });
     }
 
