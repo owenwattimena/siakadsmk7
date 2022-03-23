@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Siswa;
 use App\Models\Jurusan;
+use App\Models\Kurikulum;
+use App\Exports\SiswaExport;
+use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Helpers\AlertFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\Kurikulum;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -111,5 +114,21 @@ class SiswaController extends Controller
             return redirect()->back()->with(AlertFormatter::success("Data Siswa berhasil di hapus."));
         }
         return redirect()->back()->with(AlertFormatter::danger("Data Siswa gagal di hapus."));
+    }
+
+    public function exportSiswa($dataSiswa = [])
+    {
+        $siswaExport = new SiswaExport($dataSiswa);
+        return Excel::download($siswaExport, 'siswa.xlsx');
+    }
+
+    public function importSiswa(Request $request){
+        $import = new SiswaImport;
+        Excel::import($import, $request->file('file'));
+        $registeredData = $import->registeredData();
+        if($registeredData){
+            // dump($registeredData);
+            return $this->exportSiswa($registeredData);
+        }
     }
 }

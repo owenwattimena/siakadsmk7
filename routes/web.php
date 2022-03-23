@@ -110,6 +110,8 @@ Route::middleware(['auth'])->group(function () {
             Route::put('{id}/status', [SiswaController::class, 'status'])->name('siswa.status');
             Route::put('{id}/update', [SiswaController::class, 'update'])->name('siswa.update');
             Route::delete('{id}/delete', [SiswaController::class, 'delete'])->name('siswa.delete');
+            Route::get('donwload-excel', [SiswaController::class, 'exportSiswa'])->name('siswa.exportSiswa');
+            Route::post('import-siswa', [SiswaController::class, 'importSiswa'])->name('siswa.importSiswa');
         });
         
         Route::prefix('kelas')->group(function () {

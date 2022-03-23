@@ -36,7 +36,7 @@
                                 <label for="jurusan">Jurusan</label>
                                 <select class="form-control" id="jurusan" name="jurusan_kode">
                                     @foreach ($jurusan as $item)
-                                        <option value="{{ $item->kode }}">{{ $item->nama }}</option>
+                                        <option value="{{ $item->kode }}">[{{ $item->id }}] {{ $item->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                                 <label for="kurikulum_id">Kurikulum Yang Diikuti</label>
                                 <select class="form-control" id="kurikulum_id" name="kurikulum_id">
                                     @foreach ($kurikulum as $itemKurikulum)
-                                        <option value="{{ $itemKurikulum->id }}">{{ $itemKurikulum->nama }} - {{ $itemKurikulum->jurusan_kode }}</option>
+                                        <option value="{{ $itemKurikulum->id }}">[{{ $itemKurikulum->id }}] {{ $itemKurikulum->nama }} - {{ $itemKurikulum->jurusan_kode }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -82,7 +82,7 @@
         <div class="modal fade" id="modal-import-siswa">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="" method="POST">
+                    <form action="{{ route('siswa.importSiswa') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -91,10 +91,10 @@
                             <h4 class="modal-title">Import Siswa</h4>
                         </div>
                         <div class="modal-body">
-                            <a href=""><i class="fa fa-file-pdf"></i> Unduh Excel</a>
+                            <a href="{{route('siswa.exportSiswa')}}"><i class="fa fa-file-pdf"></i> Unduh Excel</a>
                             <table class="table">
                                 <tr>
-                                    <td width="250px"><input type="file" name="import_file" required /></td>
+                                    <td width="250px"><input type="file" name="file" required /></td>
                                     <td align="left"><button type="submit" class="btn btn-primary">Import Siswa</button></td>   
                                 </tr>
                             </table>
@@ -103,8 +103,8 @@
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div> --}}
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
@@ -113,6 +113,11 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        @endif
         <table id="table" class="table table-condensed">
             <thead>
                 <tr>
