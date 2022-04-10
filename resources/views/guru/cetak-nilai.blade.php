@@ -101,7 +101,7 @@
             </tr>              
             <tr>
                 <td width="70%" align="center"></td>
-                <td align="center"><br><br><br>@if(!empty($kelas->nama_guru))<u>{{$kelas->nama_guru}}</u><br>{{ !empty($kelas->nign) ? 'NIGN. ' . $kelas->nign : '' }} @else _________________________ @endif</td>	                            
+                <td align="center"><br><br><br>@if(!empty($kelas->nama_guru))<u>{{$kelas->nama_guru}}</u><br>{{ !empty($kelas->nign) ? 'NIP. ' . $kelas->nign : '' }} @else _________________________ @endif</td>	                            
             </tr>            
         </table>
     </body>

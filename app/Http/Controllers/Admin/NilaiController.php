@@ -28,7 +28,7 @@ class NilaiController extends Controller
     public function __construct()
     {
         $semesterAktif = Semester::where('is_aktif', 1)->first();
-        $this->semesterAktifId = $semesterAktif->id;
+        $this->semesterAktifId = $semesterAktif->id ?? 0;
     }
 
     public function inputNilai()
@@ -49,7 +49,7 @@ class NilaiController extends Controller
             ->join('matapelajarankurikulum', 'matapelajarankurikulum.id', '=', 'kelas.mapel_kuri_id')
             ->leftJoin('guru', 'guru.id', '=', 'kelas.guru_id')
             ->select('semester.nama_semester', 'semester_jurusan.semester_id', 'guru.nign', 'guru.nip', 'guru.nama as nama_guru', 'matapelajarankurikulum.id as mapel_kuri_id', 'matapelajarankurikulum.nama as mapel', 'matapelajarankurikulum.skm as mapel_skm', 'kelas.id as kelas_id', 'kelas.nama as kelas_nama', 'matapelajarankurikulum.semester as mapel_semester')
-            ->where('semester_jurusan.jurusan_id', '=', $jurusan->id)
+            ->where('semester_jurusan.jurusan_id', '=', $jurusan->id ?? 0)
             ->where('semester_jurusan.semester_id',  '=', $this->semesterAktifId)
             ->orderBy(DB::raw("matapelajarankurikulum.semester, matapelajarankurikulum.nama, kelas.nama"))
             ->get();
@@ -57,7 +57,7 @@ class NilaiController extends Controller
         $guru = Guru::all();
         $data['kelas'] = $dataKelas;
         $data['jurusan'] = $jurusanSemua;
-        $data['jurusanKode'] = $jurusan->kode;
+        $data['jurusanKode'] = $jurusan->kode ?? '';
         $data['guru'] = $guru;
         return view('admin.nilai.input-nilai.index', $data);
 

@@ -133,6 +133,9 @@
                 </tr>
             </thead>
             @foreach ($siswa as $key => $value )
+            @php
+                $paketSemester = $value->dbs->last()->paket_semester ?? 0;
+            @endphp
             <tr>
                 <td>{{ ++$key }}</td>
                 <td>{{ $value->nis }}</td>
@@ -140,7 +143,7 @@
                 <td>{{ $value->user->email }}</td>
                 <td>{{ $value->jurusan->nama }}</td>
                 <td>{{ $value->angkatan }}</td>
-                <td>{{ $value->kelompok }}</td>
+                <td>{{ $paketSemester == 1 || $paketSemester == 2 ? 'X' : '' }}{{ $value->kelompok }}</td>
                 <td><i class="fa fa-{{ $value->status_aktif == 1 ? 'check' : 'ban'}}"></i> {{ $value->status_aktif == 1 ? 'Aktif' : 'Tidak Aktif'}}</td>
                 <td>
                     <button class="btn btn-sm bg-orange" data-toggle="modal" data-target="#modal-default-{!! $key !!}"> <i class="fa fa-pencil"></i> Ubah</button>

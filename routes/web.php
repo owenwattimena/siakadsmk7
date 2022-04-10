@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\KurikulumController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\MapelKurikulumController;
 use App\Http\Controllers\Admin\SemesterJurusanController;
+use App\Http\Controllers\Admin\VisiMisiConttroller;
 use App\Http\Controllers\Guru\KelasController as KelasGuru;
 use App\Http\Controllers\Siswa\NilaiController as NilaiSiswa;
 
@@ -58,11 +59,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('dashboard.profile.put');
     Route::put('/profile/change-password', [ProfileController::class, 'changePassword'])->name('dashboard.profile.password');
+    Route::get('visi-misi', [VisiMisiConttroller::class, 'index'])->name('visi.misi');
     
     Route::middleware(['admin'])->group(function(){
         Route::get('/dashboard', function () {
             return view('admin.dashboard.index.main');
         })->name('dashboard');
+
+        Route::put('visi', [VisiMisiConttroller::class, 'storeVisi'])->name('visi.store');
+        Route::put('misi', [VisiMisiConttroller::class, 'storeMisi'])->name('misi.store');
     
         Route::prefix('jurusan')->group(function () {
             Route::get('/', [JurusanController::class, 'index'])->name('jurusan.main');

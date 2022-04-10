@@ -86,7 +86,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>NIGN</th>
+                                        <th>No Guru</th>
                                         <th>Nama Guru</th>
                                         <th>Pilih</th>
                                     </tr>

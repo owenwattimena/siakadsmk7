@@ -51,7 +51,7 @@
                     <th>Semester</th>
                     <th>Nama Mata Pelajaran</th>
                     <th>SKM</th>
-                    <th>NIGN</th>
+                    <th>No Guru</th>
                     <th>Nama Guru</th>
                     <th>Kelas</th>
                     <th>Pilihan</th>
@@ -74,7 +74,7 @@
                     <a class="btn btn-warning btn-flat btn-sm" onclick="return showModal(`{{ $value->mapel }}`, `{{ $value->mapel_semester }}`, `{{ $value->kelas_id }}`)" title="Register"><i class="fa fa-plus"></i></a> 
                     @endif
                 </td>
-                <td> <span class="label bg-blue">{{ $value->kelas_nama }}</span></td>
+                <td> <span class="label bg-blue">{{ $value->jenis_semester == 1 || $value->jenis_semester == 2 ? 'X' : '' }}{{ $value->kelas_nama }}</span></td>
                 <td> <a href="{{ route('kelas.peserta', $value->kelas_id) }}" class="btn btn-sm bg-black"> <i class="fa fa-list"></i> Peserta</a></td>
                 {{-- <td>{{ $value->paket_semester }}</td> --}}
                 
@@ -100,7 +100,7 @@
                             <table id="table-guru" class="table">
                                 <thead>
                                     <tr>
-                                        <th>NIGN</th>
+                                        <th>No Guru</th>
                                         <th>Nama Guru</th>
                                         <th>Pilih</th>
                                     </tr>

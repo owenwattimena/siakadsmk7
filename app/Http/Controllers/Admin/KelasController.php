@@ -24,7 +24,7 @@ class KelasController extends Controller
     public function __construct()
     {
         $semesterAktif = Semester::where('is_aktif', 1)->first();
-        $this->semesterAktifId = $semesterAktif->id;
+        $this->semesterAktifId = $semesterAktif->id ?? 0;
     }
 
     public function showSiswaRegister(Request $request)
@@ -196,7 +196,7 @@ class KelasController extends Controller
                 ->join('semester', 'semester.id', '=', 'semester_jurusan.semester_id')
                 ->join('matapelajarankurikulum', 'matapelajarankurikulum.id', '=', 'kelas.mapel_kuri_id')
                 ->leftJoin('guru', 'guru.id', '=', 'kelas.guru_id')
-                ->select('semester.nama_semester', 'semester_jurusan.semester_id', 'guru.nign', 'guru.nip', 'guru.nama as nama_guru', 'matapelajarankurikulum.id as mapel_kuri_id', 'matapelajarankurikulum.nama as mapel', 'matapelajarankurikulum.skm as mapel_skm', 'kelas.id as kelas_id', 'kelas.nama as kelas_nama', 'matapelajarankurikulum.semester as mapel_semester')
+                ->select('semester.nama_semester', 'semester_jurusan.semester_id', 'semester.jenis_semester','guru.nign', 'guru.nip', 'guru.nama as nama_guru', 'matapelajarankurikulum.id as mapel_kuri_id', 'matapelajarankurikulum.nama as mapel', 'matapelajarankurikulum.skm as mapel_skm', 'kelas.id as kelas_id', 'kelas.nama as kelas_nama', 'matapelajarankurikulum.semester as mapel_semester')
                 ->where('semester_jurusan.jurusan_id', '=', $jurusan->id)
                 ->where('semester_jurusan.semester_id',  '=', $this->semesterAktifId)
                 ->orderBy(DB::raw("matapelajarankurikulum.semester, matapelajarankurikulum.nama, kelas.nama"))
@@ -278,9 +278,16 @@ class KelasController extends Controller
                 'matapelajarankurikulum.skm',
                 'kelas.id',
                 'kelas.nama as nama_kelas',
-                'dbs_nilai.nilai_pengetahuan',
-                'dbs_nilai.nilai_ketrampilan',
-                'dbs_nilai.nilai_akhir',
+                'dbs_nilai.kd1',
+                'dbs_nilai.kd2',
+                'dbs_nilai.kd3',
+                'dbs_nilai.kd4',
+                'dbs_nilai.kd5',
+                'dbs_nilai.kd6',
+                'dbs_nilai.kd7',
+                'dbs_nilai.kd8',
+                'dbs_nilai.kd9',
+                'dbs_nilai.kd10',
                 'dbs_detail.bobot_nilai',
                 'dbs_detail.predikat as nilai_huruf'
             )

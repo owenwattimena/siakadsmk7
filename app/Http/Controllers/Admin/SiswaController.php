@@ -10,6 +10,7 @@ use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Helpers\AlertFormatter;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -125,10 +126,6 @@ class SiswaController extends Controller
     public function importSiswa(Request $request){
         $import = new SiswaImport;
         Excel::import($import, $request->file('file'));
-        $registeredData = $import->registeredData();
-        if($registeredData){
-            // dump($registeredData);
-            return $this->exportSiswa($registeredData);
-        }
+        return back();
     }
 }

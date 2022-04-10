@@ -49,7 +49,10 @@
                 <td>{{ $value->nama }}</td>
                 <td>{{ $value->angkatan }}</td>
                 <td>{{ $value->kode }}</td>
-                <td> <button class="btn btn-sm btn-primary">{{ $value->kelompok }}</button></td>
+                <td> <button class="btn btn-sm btn-primary">
+                    {{ ($value->paket_semester == 1 || $value->paket_semester  == 2) ? 'X' : '' }}
+                    {{ $value->kelompok }}
+                </button></td>
                 <td>{{ $value->paket_semester }}</td>
                 
             </tr>

@@ -40,8 +40,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="nign">Nomor Induk Guru Nasional (NIGN)</label>
-                                <input type="number" class="form-control" id="nign" name="nign" placeholder="[Nomor Induk Guru Nasional]">
+                                <label for="nign">Nomor Guru</label>
+                                <input type="number" class="form-control" id="nign" name="nign" placeholder="[Nomor Guru]">
                                 @error('nign')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -87,7 +87,7 @@
             <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>NIGN</th>
+                    <th>No Guru</th>
                     <th>NIP</th>
                     <th>Nama</th>
                     <th>Email</th>
@@ -135,7 +135,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nign">Nomor Induk Guru Nasional (NIGN)</label>
+                                        <label for="nign">No Guru</label>
                                         <input type="number" class="form-control" id="nign" name="nign" value="{{ $value->nign }}" placeholder="[Nomor Induk Guru Nasional]" readonly>
                                         @error('nign')
                                             <small class="text-danger">{{ $message }}</small>

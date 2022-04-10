@@ -39,7 +39,8 @@ class SiswaExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
             'Angkatan', 
             'Kelas', 
             'Id Jurusan', 
-            'Kurikulum Id'
+            'Kurikulum Id',
+            'Email',
         ];
     }
 

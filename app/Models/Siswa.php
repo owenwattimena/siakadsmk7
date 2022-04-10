@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Dbs;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends Model
 {
     use HasFactory;
     protected $table = 'siswa';
+
 
     /**
      * Get the user that owns the Siswa
@@ -18,6 +20,16 @@ class Siswa extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'nis', 'nis');
+    }
+
+    /**
+     * Get the paketSemester associated with the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function dbs()
+    {
+        return $this->hasMany(Dbs::class, 'siswa_nis', 'nis');
     }
 
     /**

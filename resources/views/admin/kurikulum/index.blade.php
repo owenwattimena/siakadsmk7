@@ -78,7 +78,7 @@
                     <td>{{ ++$key }}</td>
                     <td>{{ $value->jurusan->nama }}</td>
                     <td>{{ $value->tahun }}</td>
-                    <td>{{ $value->nama }}</td>
+                    <td>[{{ $value->id }}]{{ $value->nama }}</td>
                     <td>
                         <a href="{{ route('mapel-kurikulum.main', $value->id) }}" class="btn btn-sm bg-blue"> <i class="fa fa-list"></i> Matapelajaran</a>
                         <button class="btn btn-sm bg-orange" data-toggle="modal" data-target="#modal-default-{!! $key !!}"> <i class="fa fa-pencil"></i> Ubah</button>

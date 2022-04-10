@@ -36,6 +36,7 @@
             <!-- Optionally, you can add icons to the links -->
             @if (\Auth::user()->level_id == 1 ||  \Auth::user()->level_id == 2)
             <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li class="{{ (request()->is('visi-misi*')) ? 'active' : '' }}"><a href="{{ route('visi.misi') }}"><i class="fa fa-list"></i> <span>Visi & Misi</span></a></li>
             <li class="{{ (request()->is('jurusan*')) ? 'active' : '' }}"><a href="{{ route('jurusan.main') }}"><i class="fa fa-building"></i> <span>Jurusan</span></a></li>
             <li class="{{ (request()->is('kurikulum*')) ? 'active' : '' }}"><a href="{{ route('kurikulum.main') }}"><i class="fa fa-book"></i> <span>Kurikulum</span></a></li>
             <li class="{{ (request()->is('semester*')) ? 'active' : '' }}"><a href="{{ route('semester.main') }}"><i class="fa fa-calendar"></i> <span>Semester Akademik</span></a></li>
@@ -65,9 +66,11 @@
             <li class="{{ (request()->is('saran*')) ? 'active' : '' }}"><a href="{{ route('saran') }}"><i class="fa fa-feed"></i> <span>Saran & Masukan</span></a></li>
             @elseif(\Auth::user()->level_id == 3)   
             <li class="{{ (request()->is('dashboard-guru')) ? 'active' : '' }}"><a href="{{ route('dashboard-guru') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li class="{{ (request()->is('visi-misi*')) ? 'active' : '' }}"><a href="{{ route('visi.misi') }}"><i class="fa fa-list"></i> <span>Visi & Misi</span></a></li>
             <li class="{{ (request()->is('dashboard-guru/kelas*')) ? 'active' : '' }}"><a href="{{ route('dashboard-guru.kelas') }}"><i class="fa fa-list"></i> <span>Kelas</span></a></li>
             @elseif(\Auth::user()->level_id == 4)   
             <li class="{{ (request()->is('dashboard-siswa')) ? 'active' : '' }}"><a href="{{ route('dashboard-siswa') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li class="{{ (request()->is('visi-misi*')) ? 'active' : '' }}"><a href="{{ route('visi.misi') }}"><i class="fa fa-list"></i> <span>Visi & Misi</span></a></li>
             <li class="{{ (request()->is('dashboard-siswa/nilai*')) ? 'active' : '' }}"><a href="{{ route('dashboard-siswa.nilai') }}"><i class="fa fa-star"></i> <span>Nilai</span></a></li>
             <li class="{{ (request()->is('dashboard-siswa/saran*')) ? 'active' : '' }}"><a href="{{ route('dashboard-siswa.saran') }}"><i class="fa fa-feed"></i> <span>Saran & Masukan</span></a></li>
             @endif

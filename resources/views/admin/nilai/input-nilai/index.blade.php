@@ -47,7 +47,7 @@
                 <th>Semester</th>
                 <th>Nama Mata Pelajaran</th>
                 <th>SKM</th>
-                <th>NIGN</th>
+                <th>No Guru</th>
                 <th>Nama Guru</th>
                 <th>Kelas</th>
                 <th>Pilihan</th>
@@ -93,7 +93,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>NIGN</th>
+                                        <th>No Guru</th>
                                         <th>Nama Guru</th>
                                         <th>Pilih</th>
                                     </tr>

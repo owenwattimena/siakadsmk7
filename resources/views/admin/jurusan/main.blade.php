@@ -67,7 +67,7 @@
                 @foreach ($jurusan as $key => $value )
                 <tr>
                     <td>{{ ++$key }}</td>
-                    <td>{{ $value->nama }}</td>
+                    <td>[{{ $value->id }}]{{ $value->nama }}</td>
                     <td>{{ $value->kode }}</td>
                     <td>
                         <button class="btn btn-sm bg-orange" data-toggle="modal" data-target="#modal-default-{!! $key !!}"> <i class="fa fa-pencil"></i> Ubah</button>

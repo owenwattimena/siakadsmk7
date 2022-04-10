@@ -2,10 +2,12 @@
 
 namespace App\Imports;
 
+use App\Models\User;
 use App\Models\Siswa;
-use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
+use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -43,7 +45,28 @@ class SiswaImport implements ToCollection, WithHeadingRow
         }
         if($insert){
             // insert into DB
-            // dd($insert);
+            foreach($insert as $i){
+                $siswa = new Siswa;
+                $siswa->nis = $i['nis'];
+                $siswa->nama = $i['nama'];
+                $siswa->jurusan_kode = $i['jurusan_kode'];
+                $siswa->jurusan_id = $i['jurusan_id'];
+                $siswa->angkatan = $i['angkatan'];
+                $siswa->kelompok = $i['kelompok'];
+                $siswa->kurikulum_id = $i['kurikulum_id'];
+                if($siswa->save())
+                {
+                    $newUser             = new User;
+                    $newUser->name       = $siswa->nama;
+                    $newUser->email      = $i['email']??"";
+                    $newUser->username   = $siswa->nis;
+                    $newUser->password   = Hash::make('password');
+                    $newUser->nis        = $siswa->nis;
+                    $newUser->level_id   = 4;
+
+                    $newUser->save();
+                }
+            }
         }
     }
 
