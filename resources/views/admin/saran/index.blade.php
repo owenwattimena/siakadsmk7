@@ -1,26 +1,22 @@
 @extends('admin.templates.template')
 @section('title')
 <h1>
-    Dashboard Siswa
+    Saran & Masukan
     <small>Control panel</small>
 </h1>
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
-    <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+    <li><i class="fa fa-dashboard"></i> Dashboard</li>
+    <li class="active"><i class="fa fa-feed"></i> Saran & Masukan</li>
 </ol>
 @endsection
 
 @section('content')
 <div>
-    <div class="callout callout-info">
-        <h4>Selamat Datang {{ Auth::user()->name }}</h4>
-        
-        <p></p>
-    </div>
     <div class="box">
         <div class="box-header">
-            PENGUMUMAN
+            Saran & Masukan
         </div>
         <div class="box-body">
             <!-- Post -->

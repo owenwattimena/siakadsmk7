@@ -288,8 +288,22 @@ class KelasController extends Controller
                 'dbs_nilai.kd8',
                 'dbs_nilai.kd9',
                 'dbs_nilai.kd10',
-                'dbs_detail.bobot_nilai',
-                'dbs_detail.predikat as nilai_huruf'
+                'dbs_nilai.rata_rata_kd',
+                'dbs_nilai.pts',
+                'dbs_nilai.pas',
+                'dbs_nilai.kinerja1',
+                'dbs_nilai.kinerja2',
+                'dbs_nilai.rata_rata_kinerja',
+                'dbs_nilai.proyek1',
+                'dbs_nilai.proyek2',
+                'dbs_nilai.rata_rata_proyek',
+                'dbs_nilai.portofolio1',
+                'dbs_nilai.portofolio2',
+                'dbs_nilai.rata_rata_portofolio',
+                'dbs_detail.n_raport_pengetahuan',
+                'dbs_detail.predikat_pengetahuan',
+                'dbs_detail.n_raport_ketrampilan',
+                'dbs_detail.predikat_ketrampilan',
             )
             ->where('dbs_detail.kelas_id', '=', $id)
             ->orderBy('siswa.nis')

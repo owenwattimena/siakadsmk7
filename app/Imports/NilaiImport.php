@@ -37,10 +37,29 @@ class NilaiImport implements ToModel, WithCalculatedFormulas, WithHeadingRow{
         {
             $insert[] = [
                 'dbs_detail_id'     => $siswa->id,
-                'nilai_pengetahuan' => $row['nilai_pengetahuan'],
-                'nilai_ketrampilan' => $row['nilai_keterampilan'],
-                'nilai_akhir'       => $row['nilai_akhir'],
-                'kehadiran'         => $row['kehadiran'],
+                'kd1' => $row['kd1'] ?? 0,
+                'kd2' => $row['kd2'] ?? 0,
+                'kd3' => $row['kd3'] ?? 0,
+                'kd4' => $row['kd4'] ?? 0,
+                'kd5' => $row['kd5'] ?? 0,
+                'kd6' => $row['kd6'] ?? 0,
+                'kd7' => $row['kd7'] ?? 0,
+                'kd8' => $row['kd8'] ?? 0,
+                'kd9' => $row['kd9'] ?? 0,
+                'kd10' => $row['kd10'] ?? 0,
+                'kd10' => $row['kd10'] ?? 0,
+                'rata_rata_kd' => $row['rata_rata_kd'] ?? 0,
+                'pts' => $row['pts'] ?? 0,
+                'pas' => $row['pas'] ?? 0,
+                'kinerja1' => $row['kinerja_1'] ?? 0,
+                'kinerja2' => $row['kinerja_2'] ?? 0,
+                'rata_rata_kinerja' => $row['rata_rata_kinerja'] ?? 0,
+                'proyek1' => $row['proyek_1'] ?? 0,
+                'proyek2' => $row['proyek_2'] ?? 0,
+                'rata_rata_proyek' => $row['rata_rata_proyek'] ?? 0,
+                'portofolio1' => $row['portofolio_1'] ?? 0,
+                'portofolio2' => $row['portofolio_2'] ?? 0,
+                'rata_rata_portofolio' => $row['rata_rata_portofolio'] ?? 0,
             ];
 
             if(DB::table('dbs_nilai')->where('dbs_detail_id', $siswa->id)->exists()){
@@ -48,8 +67,10 @@ class NilaiImport implements ToModel, WithCalculatedFormulas, WithHeadingRow{
             }
 
             DB::table('dbs_detail')->where('id', $siswa->id)->update([
-                "bobot_nilai" => $row['bobot_nilai'],
-                "predikat" => $row['nilai_huruf']
+                "n_raport_pengetahuan" => $row['n_raport_pengetahuan'],
+                "predikat_pengetahuan" => $row['predikat_pengetahuan'],
+                "n_raport_ketrampilan" => $row['n_raport_ketrampilan'],
+                "predikat_ketrampilan" => $row['predikat_ketrampilan'],
             ]);
         }
 

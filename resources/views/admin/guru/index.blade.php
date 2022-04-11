@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="nign">Nomor Guru</label>
-                                <input type="number" class="form-control" id="nign" name="nign" placeholder="[Nomor Guru]">
+                                <input type="text" class="form-control" id="nign" name="nign" placeholder="[Nomor Guru]">
                                 @error('nign')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror

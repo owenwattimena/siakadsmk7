@@ -96,9 +96,8 @@ class NilaiController extends Controller
     public function cetakNilai(Request $request, $kelasId)
     {
         $data['today'] = Carbon::now()->isoFormat('D MMMM Y');
-        $data['kelasPeserta'] = Nilai::nilai($kelasId);
+        $data['kelasPeserta'] = Nilai::nilaiKelas($kelasId);
         $data['kelas'] = Kelas::kelas($kelasId);
-        // dd($data);
         $pdf = PDF::loadView('guru.cetak-nilai', $data);
         if($request->cetak == 1) return $pdf->stream('nilai-peserta.pdf'); 
         return $pdf->download('nilai-peserta.pdf');

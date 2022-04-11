@@ -45,9 +45,11 @@
                     <th style="width: 10px">#</th>
                     <th>NIS</th>
                     <th>Nama</th>
-                    {{-- <th>Nilai Pengetahuan</th>
-                    <th>Nilai Keterampilan</th>
-                    <th>Nilai Akhir</th>
+                    <th>N. Raport Pengetahuan</th>
+                    <th>Predikat Pengetahuan</th>
+                    <th>N. Raport Ketrampilan</th>
+                    <th>Predikat Ketrampilan</th>
+                    {{-- <th>Nilai Akhir</th>
                     <th>Bobot Nilai</th>
                     <th>Nilai Huruf</th> --}}
                 </tr>
@@ -56,7 +58,11 @@
                     <td>{{ ++$key }}</td>
                     <td>{{ $value->nis }}</td>
                     <td>{{ $value->nama }}</td>
-                    {{-- <td>{{ $value->nilai_pengetahuan ?? '-' }}</td>
+                    <td>{{ $value->n_raport_pengetahuan ?? '-' }}</td>
+                    <td>{{ $value->predikat_pengetahuan ?? '-' }}</td>
+                    <td>{{ $value->n_raport_ketrampilan ?? '-' }}</td>
+                    <td>{{ $value->predikat_ketrampilan ?? '-' }}</td>
+                    {{--
                     <td>{{ $value->nilai_ketrampilan ?? '-' }}</td>
                     <td>{{ $value->nilai_akhir ?? '-' }}</td>
                     <td>{{ $value->bobot_nilai ?? '-' }}</td>

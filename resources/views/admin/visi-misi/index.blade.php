@@ -26,7 +26,7 @@
                 @csrf
                 @method('put')
                 <button class="btn btn-primary margin">SIMPAN</button>
-                <textarea class="textarea" name="visi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $pengaturan->visi !!}</textarea>
+                <textarea class="textarea" name="visi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $pengaturan->visi ?? '' !!}</textarea>
             </form>
             @else
             {!! $pengaturan->visi !!}
@@ -39,10 +39,10 @@
                 @csrf
                 @method('put')
                 <button class="btn btn-primary margin">SIMPAN</button>
-                <textarea class="textarea" name="misi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $pengaturan->misi !!}</textarea>
+                <textarea class="textarea" name="misi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $pengaturan->misi ?? '' !!}</textarea>
             </form>
             @else
-            {!! $pengaturan->misi !!}
+            {!! $pengaturan->misi ?? '' !!}
             @endif
         </div>
     </div>

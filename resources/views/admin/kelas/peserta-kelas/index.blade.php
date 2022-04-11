@@ -45,22 +45,20 @@
                     <th style="width: 10px">#</th>
                     <th>NIS</th>
                     <th>Nama</th>
-                    <th>Nilai Pengetahuan</th>
-                    <th>Nilai Keterampilan</th>
-                    <th>Nilai Akhir</th>
-                    <th>Bobot Nilai</th>
-                    <th>Nilai Huruf</th>
+                    <th>N. Raport Pengetahuan</th>
+                    <th>Predikat Pengetahuan</th>
+                    <th>N. Raport Ketrampilan</th>
+                    <th>Predikat Ketrampilan</th>
                 </tr>
                 @foreach ($peserta as $key => $value )
                 <tr>
                     <td>{{ ++$key }}</td>
                     <td>{{ $value->nis }}</td>
                     <td>{{ $value->nama }}</td>
-                    <td>{{ $value->nilai_pengetahuan ?? '-' }}</td>
-                    <td>{{ $value->nilai_ketrampilan ?? '-' }}</td>
-                    <td>{{ $value->nilai_akhir ?? '-' }}</td>
-                    <td>{{ $value->bobot_nilai ?? '-' }}</td>
-                    <td>{{ $value->nilai_huruf ?? '-' }}</td>
+                    <td>{{ $value->n_raport_pengetahuan ?? '-' }}</td>
+                    <td>{{ $value->predikat_pengetahuan ?? '-' }}</td>
+                    <td>{{ $value->n_raport_ketrampilan ?? '-' }}</td>
+                    <td>{{ $value->predikat_ketrampilan ?? '-' }}</td>
                     {{-- <td> <span class="label bg-blue">{{ $value->kelas_nama }}</span></td> --}}
                     {{-- <td> <a href="#" class="btn btn-sm bg-black"> <i class="fa fa-list"></i> Peserta</a></td> --}}
                     {{-- <td>{{ $value->paket_semester }}</td> --}}

@@ -16,8 +16,10 @@ class CreateDbsdetailsTable extends Migration
         Schema::create('dbs_detail', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dbs_id');
-            $table->float('bobot_nilai')->nullable();
-            $table->char('predikat')->nullable();
+            $table->float('n_raport_pengetahuan')->nullable();
+            $table->string('predikat_pengetahuan')->nullable();
+            $table->float('n_raport_ketrampilan')->nullable();
+            $table->string('predikat_ketrampilan')->nullable();
             $table->unsignedBigInteger('kelas_id');
             $table->timestamps();
 

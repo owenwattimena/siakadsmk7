@@ -29,8 +29,15 @@ class CreateDbsnilaisTable extends Migration
             $table->float('rata_rata_kd');
             $table->float('pts');
             $table->float('pas');
-            $table->float('n_raport_pengetahuan');
-            $table->string('predikat');
+            $table->float('kinerja1');
+            $table->float('kinerja2');
+            $table->float('rata_rata_kinerja');
+            $table->float('proyek1');
+            $table->float('proyek2');
+            $table->float('rata_rata_proyek');
+            $table->float('portofolio1');
+            $table->float('portofolio2');
+            $table->float('rata_rata_portofolio');
         });
     }
 
