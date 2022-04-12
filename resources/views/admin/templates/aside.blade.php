@@ -37,6 +37,7 @@
             @if (\Auth::user()->level_id == 1 ||  \Auth::user()->level_id == 2)
             <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li class="{{ (request()->is('visi-misi*')) ? 'active' : '' }}"><a href="{{ route('visi.misi') }}"><i class="fa fa-list"></i> <span>Visi & Misi</span></a></li>
+            <li class="{{ (request()->is('galeri*')) ? 'active' : '' }}"><a href="{{ route('galeri') }}"><i class="fa fa-photo"></i> <span>Galeri</span></a></li>
             <li class="{{ (request()->is('jurusan*')) ? 'active' : '' }}"><a href="{{ route('jurusan.main') }}"><i class="fa fa-building"></i> <span>Jurusan</span></a></li>
             <li class="{{ (request()->is('kurikulum*')) ? 'active' : '' }}"><a href="{{ route('kurikulum.main') }}"><i class="fa fa-book"></i> <span>Kurikulum</span></a></li>
             <li class="{{ (request()->is('semester*')) ? 'active' : '' }}"><a href="{{ route('semester.main') }}"><i class="fa fa-calendar"></i> <span>Semester Akademik</span></a></li>

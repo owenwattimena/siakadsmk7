@@ -46,19 +46,19 @@
             <tr>
                 <th style="width: 10px">#</th>
                 <th>Matapelajaran</th>
-                <th>Nilai Pengetahuan</th>
-                <th>Nilai Keterampilan</th>
-                <th>Nilai Akhir</th>
-                <th>Predikat</th>
+                <th>N. Raport Pengetahuan</th>
+                <th>Predikat Pengetahuan</th>
+                <th>N. Raport Ketrampilan</th>
+                <th>Predikat Ketrampilan</th>
             </tr>
             @foreach ($dataBelajar as $key => $value )
             <tr>
                 <td>{{ ++$key }}</td>
                 <td>{{ $value->nama }}</td>        
-                <td>{{ $value->nilai_pengetahuan }}</td>
-                <td>{{ $value->nilai_ketrampilan }}</td>
-                <td>{{ $value->nilai_akhir }}</td>
-                <td>{{ $value->predikat }}</td>
+                <td>{{ $value->n_raport_pengetahuan ?? '-' }}</td>
+                <td>{{ $value->predikat_pengetahuan ?? '-' }}</td>
+                <td>{{ $value->n_raport_ketrampilan ?? '-' }}</td>
+                <td>{{ $value->predikat_ketrampilan ?? '-' }}</td>
             </tr>
             @endforeach
         </table>

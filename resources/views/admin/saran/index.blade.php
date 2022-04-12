@@ -27,7 +27,7 @@
                     <span class="username">
                         <a href="#">{{ $item->siswa->nama }}</a>
                     </span>
-                    <span class="description">Kelas {{ $item->siswa->kelompok }}</span>
+                    {{-- <span class="description">Kelas {{ $item->siswa->kelompok }}</span> --}}
                     <span class="description">{{ Carbon\Carbon::createFromTimeString($item->created_at)->isoFormat('D MMMM Y') }}</span>
                 </div>
                 <!-- /.user-block -->

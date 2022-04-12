@@ -7,14 +7,15 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\NilaiController;
 use App\Http\Controllers\Admin\SaranController;
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\KurikulumController;
+use App\Http\Controllers\Admin\VisiMisiConttroller;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\MapelKurikulumController;
 use App\Http\Controllers\Admin\SemesterJurusanController;
-use App\Http\Controllers\Admin\VisiMisiConttroller;
 use App\Http\Controllers\Guru\KelasController as KelasGuru;
 use App\Http\Controllers\Siswa\NilaiController as NilaiSiswa;
 
@@ -68,6 +69,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::put('visi', [VisiMisiConttroller::class, 'storeVisi'])->name('visi.store');
         Route::put('misi', [VisiMisiConttroller::class, 'storeMisi'])->name('misi.store');
+
+        Route::get('galeri', [GaleriController::class, 'index'])->name('galeri');
+        Route::post('galeri', [GaleriController::class, 'store'])->name('galeri');
     
         Route::prefix('jurusan')->group(function () {
             Route::get('/', [JurusanController::class, 'index'])->name('jurusan.main');
