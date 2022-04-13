@@ -20,6 +20,7 @@
     <div class="box">
         <div class="box-header">
             <div class="box-title">Galeri</div>
+            @if (in_array(auth()->user()->level_id, [1,2]))
             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Tambah</button>
             <div class="modal fade" id="modal-default">
                 <div class="modal-dialog">
@@ -37,14 +38,14 @@
                                     <label for="foto">Foto</label>
                                     <input type="file" class="form-control" id="foto" name="foto" accept="image/png, image/gif, image/jpeg">
                                     @error('foto')
-                                        <small class="text-red">{{ $message }}</small>
+                                    <small class="text-red">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">Deskripsi</label>
                                     <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
                                     @error('deskripsi')
-                                        <small class="text-red">{{ $message }}</small>
+                                    <small class="text-red">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -58,8 +59,10 @@
                 </div>
                 <!-- /.modal-dialog -->
             </div>
+            @endif
         </div>
         <div class="box-body">
+            @if (in_array(auth()->user()->level_id, [1,2]))
             <div class="table-responsive">
                 <table id="table" class="table table-bordered table-hover">
                     <thead>
@@ -71,24 +74,88 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @php
+                        @php
                         $no = 1;
-                    @endphp
+                        @endphp
                         @foreach ($galeri as $item)
                         @php
-                            $itemFoto = explode('/', $item->foto);
-                            $foto = 'storage/galeri/'.end($itemFoto);
+                        $itemFoto = explode('/', $item->foto);
+                        $foto = 'storage/galeri/'.end($itemFoto);
                         @endphp
-                            <tr>
-                                <td>{{ ++$no }}</td>
-                                <td class="text-center"><img src="{{ asset($foto) }}" alt="" width="100"></td>
-                                <td>{{ $item->deskripsi_galeri }}</td>
-                                <td>UBAH|HAPUS</td>
-                            </tr>
+                        <tr>
+                            <td>{{ ++$no }}</td>
+                            <td class="text-center"><img src="{{ asset($foto) }}" alt="" width="100"></td>
+                            <td>{{ $item->deskripsi_galeri }}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-edit-{{ $item->id }}"><i class="fa fa-pencil"></i> Ubah</button>
+                                <form action="{{ route('galeri.delete', $item->id) }}" method="post" style="display: inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm" onclick="confirm('Yakin ingin menghapus galeri?')"><i class="fa fa-trash"></i> Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="modal-edit-{{ $item->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="{{ route('galeri.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('put')
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title">Ubah Galeri</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="foto">Foto</label>
+                                                <input type="file" class="form-control" id="foto" name="foto" accept="image/png, image/gif, image/jpeg">
+                                                @error('foto')
+                                                <small class="text-red">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi</label>
+                                                <textarea class="form-control" id="deskripsi" name="deskripsi">{{ $item->deskripsi_galeri }}</textarea>
+                                                @error('deskripsi')
+                                                <small class="text-red">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                </div>
+                                </form>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            @else
+            <div class="row">
+                @foreach ($galeri as $item)  
+                @php
+                $itemFoto = explode('/', $item->foto);
+                $foto = 'storage/galeri/'.end($itemFoto);
+                @endphp       
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="box-body no-padding text-center">
+                            <img class="img-responsive pad" src="{{ $foto }}" alt="Photo">
+                            <p>{{ $item->deskripsi_galeri }}</p>
+                        </div>
+                    </div>
+                </div>       
+                @endforeach
+            </div>
+            @endif
+
         </div>
     </div>
 </div>

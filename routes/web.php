@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('dashboard.profile.put');
     Route::put('/profile/change-password', [ProfileController::class, 'changePassword'])->name('dashboard.profile.password');
     Route::get('visi-misi', [VisiMisiConttroller::class, 'index'])->name('visi.misi');
+    Route::get('galeri', [GaleriController::class, 'index'])->name('galeri');
     
     Route::middleware(['admin'])->group(function(){
         Route::get('/dashboard', function () {
@@ -70,8 +71,9 @@ Route::middleware(['auth'])->group(function () {
         Route::put('visi', [VisiMisiConttroller::class, 'storeVisi'])->name('visi.store');
         Route::put('misi', [VisiMisiConttroller::class, 'storeMisi'])->name('misi.store');
 
-        Route::get('galeri', [GaleriController::class, 'index'])->name('galeri');
         Route::post('galeri', [GaleriController::class, 'store'])->name('galeri');
+        Route::put('galeri/{idGaleri}', [GaleriController::class, 'update'])->name('galeri.update');
+        Route::delete('galeri/{idGaleri}', [GaleriController::class, 'delete'])->name('galeri.delete');
     
         Route::prefix('jurusan')->group(function () {
             Route::get('/', [JurusanController::class, 'index'])->name('jurusan.main');

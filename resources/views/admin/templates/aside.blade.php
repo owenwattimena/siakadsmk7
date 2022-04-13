@@ -68,10 +68,12 @@
             @elseif(\Auth::user()->level_id == 3)   
             <li class="{{ (request()->is('dashboard-guru')) ? 'active' : '' }}"><a href="{{ route('dashboard-guru') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li class="{{ (request()->is('visi-misi*')) ? 'active' : '' }}"><a href="{{ route('visi.misi') }}"><i class="fa fa-list"></i> <span>Visi & Misi</span></a></li>
+            <li class="{{ (request()->is('galeri*')) ? 'active' : '' }}"><a href="{{ route('galeri') }}"><i class="fa fa-photo"></i> <span>Galeri</span></a></li>
             <li class="{{ (request()->is('dashboard-guru/kelas*')) ? 'active' : '' }}"><a href="{{ route('dashboard-guru.kelas') }}"><i class="fa fa-list"></i> <span>Kelas</span></a></li>
             @elseif(\Auth::user()->level_id == 4)   
             <li class="{{ (request()->is('dashboard-siswa')) ? 'active' : '' }}"><a href="{{ route('dashboard-siswa') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li class="{{ (request()->is('visi-misi*')) ? 'active' : '' }}"><a href="{{ route('visi.misi') }}"><i class="fa fa-list"></i> <span>Visi & Misi</span></a></li>
+            <li class="{{ (request()->is('galeri*')) ? 'active' : '' }}"><a href="{{ route('galeri') }}"><i class="fa fa-photo"></i> <span>Galeri</span></a></li>
             <li class="{{ (request()->is('dashboard-siswa/nilai*')) ? 'active' : '' }}"><a href="{{ route('dashboard-siswa.nilai') }}"><i class="fa fa-star"></i> <span>Nilai</span></a></li>
             <li class="{{ (request()->is('dashboard-siswa/saran*')) ? 'active' : '' }}"><a href="{{ route('dashboard-siswa.saran') }}"><i class="fa fa-feed"></i> <span>Saran & Masukan</span></a></li>
             @endif

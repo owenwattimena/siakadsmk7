@@ -34,4 +34,38 @@ class GaleriController extends Controller
         }
         return back()->with(AlertFormatter::danger('Galeri gagal ditambahkan'));
     }
+
+    public function update(Request $request, $idGaleri)
+    {
+        $request->validate([
+            'deskripsi' => 'required',
+        ]);
+        $galeri = Galeri::find($idGaleri);
+        $oldGaleri = $galeri->foto;
+        $galeri->deskripsi_galeri = $request->deskripsi;
+        if($request->hasFile('foto')){
+            $request->validate([
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            ]);
+            $path = Storage::putFile('public/galeri', $request->file('foto'));
+            $galeri->foto = $path;
+            Storage::delete($oldGaleri);
+
+        }
+        if ($galeri->save()) {
+
+            return back()->with(AlertFormatter::success('Galeri berhasil diubah'));
+        }
+        return back()->with(AlertFormatter::danger('Galeri gagal diubah'));
+    }
+
+    public function delete($idGaleri)
+    {
+        $galeri = Galeri::find($idGaleri);
+        if ($galeri->delete()) {
+            Storage::delete($galeri->foto);
+            return back()->with(AlertFormatter::success('Galeri berhasil dihapus'));
+        }
+        return back()->with(AlertFormatter::danger('Galeri gagal dihapus'));
+    }
 }
