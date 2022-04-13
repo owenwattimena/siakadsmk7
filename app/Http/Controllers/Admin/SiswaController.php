@@ -117,9 +117,18 @@ class SiswaController extends Controller
         return redirect()->back()->with(AlertFormatter::danger("Data Siswa gagal di hapus."));
     }
 
-    public function exportSiswa($dataSiswa = [])
+    public function exportSiswa(Request $request)
     {
-        $siswaExport = new SiswaExport($dataSiswa);
+
+        $dataSiswa = [];
+        if($request->tipe_siswa == 'lama')
+        {
+            $siswaExport = new SiswaExport($dataSiswa, $request->tipe_siswa);
+        }
+        else
+        {
+            $siswaExport = new SiswaExport($dataSiswa);
+        }
         return Excel::download($siswaExport, 'siswa.xlsx');
     }
 

@@ -16,10 +16,12 @@ class SiswaExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
 {
 
     public $dataSiswa;
+    public $tipeSiswa;
 
-    public function __construct($dataSiswa)
+    public function __construct($dataSiswa, $tipeSiswa = null)
     {
         $this->dataSiswa = $dataSiswa;
+        $this->tipeSiswa = $tipeSiswa;
     }
 
     /**
@@ -32,6 +34,18 @@ class SiswaExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
 
     public function headings():array
     {
+        if($this->tipeSiswa === null){
+            return [
+                'NIS', 
+                'Nama', 
+                'Kode Jurusan', 
+                'Angkatan', 
+                'Kelas', 
+                'Id Jurusan', 
+                'Kurikulum Id',
+                'Email',
+            ];
+        }
         return [
             'NIS', 
             'Nama', 
@@ -41,6 +55,8 @@ class SiswaExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
             'Id Jurusan', 
             'Kurikulum Id',
             'Email',
+            'Id Semester Jurusan',
+            'Paket Semester',
         ];
     }
 

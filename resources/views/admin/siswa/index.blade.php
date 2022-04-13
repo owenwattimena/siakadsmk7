@@ -20,6 +20,7 @@
         <h3 class="box-title">Daftar Siswa</h3>
         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Tambah</button>
         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-import-siswa"><i class="fa fa-plus"></i> Import Siswa</button>
+    
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -91,9 +92,16 @@
                             <h4 class="modal-title">Import Siswa</h4>
                         </div>
                         <div class="modal-body">
-                            <a href="{{route('siswa.exportSiswa')}}"><i class="fa fa-file-pdf"></i> Unduh Excel</a>
+                            <a href="{{route('siswa.exportSiswa')}}"><i class="fa fa-plus"></i> Unduh Excel Siswa Baru</a>
+                            <a href="{{route('siswa.exportSiswa', ['tipe_siswa' => 'lama'])}}"><i class="fa fa-user-plus"></i> Unduh Excel Siswa Lama</a>
                             <table class="table">
                                 <tr>
+                                    <td width="50px">
+                                        <select name="tipe-siswa" required />
+                                            <option value="baru">Siswa Baru</option>
+                                            <option value="lama">Siswa Lama</option>
+                                        </select>
+                                    </td>
                                     <td width="250px"><input type="file" name="file" required /></td>
                                     <td align="left"><button type="submit" class="btn btn-primary">Import Siswa</button></td>   
                                 </tr>
