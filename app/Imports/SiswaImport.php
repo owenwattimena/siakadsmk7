@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Dbs;
 use App\Models\User;
 use App\Models\Siswa;
 use Illuminate\Validation\Rule;
@@ -17,6 +18,12 @@ class SiswaImport implements ToCollection, WithHeadingRow
 {
 
     private $registeredData = [];
+    private $tipeSiswa;
+
+    public function __construct($tipeSiswa = null)
+    {
+        $this->tipeSiswa = $tipeSiswa;
+    }
 
     /**
     * @param array $row
@@ -28,19 +35,30 @@ class SiswaImport implements ToCollection, WithHeadingRow
         $this->registeredData;
         $insert = [];
         foreach($rows as $row){
+            // dd($row['id_semester_jurusan']);
             $siswa = Siswa::where('nis', $row['nis'])->first();
             if($siswa){
                 $this->registeredData[] = $siswa;
             }else{
-                $insert[] = [
+                $newRow = [
                     'nis' => $row['nis'],
                     'nama' => $row['nama'], 
+                    'email' => $row['email'], 
                     'jurusan_kode' => $row['kode_jurusan'],
                     'angkatan' => $row['angkatan'], 
                     'kelompok' => $row['kelas'], 
                     'jurusan_id' => $row['id_jurusan'], 
                     'kurikulum_id' => $row['kurikulum_id'],
                 ];
+
+                if($this->tipeSiswa == 'lama'){
+                    $newRow = array_merge($newRow, [
+                        'id_semester_jurusan' => $row['id_semester_jurusan'],
+                        'paket_semester' => $row['paket_semester']
+                    ]);
+                }
+
+                $insert[] = $newRow;
             }
         }
         if($insert){
@@ -65,6 +83,13 @@ class SiswaImport implements ToCollection, WithHeadingRow
                     $newUser->level_id   = 4;
 
                     $newUser->save();
+                    if($this->tipeSiswa == 'lama'){
+                        $dbs  = new Dbs;
+                        $dbs->semester_jurusan_id = $i['id_semester_jurusan'];
+                        $dbs->paket_semester = $i['paket_semester'];
+                        $dbs->siswa_nis = $siswa->nis;
+                        $dbs->save();
+                    }
                 }
             }
         }

@@ -86,7 +86,7 @@
             @foreach ($semesterJurusan as $key => $value )
             <tr>
                 <td>{{ ++$key }}</td>
-                <td>{{ $value->jurusan->nama }}</td>
+                <td>[{{ $value->id }}] {{ $value->jurusan->nama }}</td>
                 <td>{{ $value->tanggal_mulai_semester }}</td>
                 <td>{{ $value->tanggal_selesai_semester }}</td>
                 <td>{{ $value->tanggal_mulai_input_nilai }}</td>

@@ -21,7 +21,8 @@
 
             </div><!-- /.box-header -->
             <div class="box-header">
-                <h3 class="box-title">@if( ! empty($kelaspeserta[0]['mkkurKode'])) {{$kelaspeserta[0]['mkkurKode'].' - '.$kelaspeserta[0]['mkkurNama'].' - Kelas '.$kelaspeserta[0]['klsNama'] }} @endif</h3>
+                @inject('serviceKelas', 'App\Services\Kelas')
+                <h3 class="box-title">@if( ! empty($kelaspeserta[0]['mkkurKode'])) {{$kelaspeserta[0]['mkkurKode'].' - '.$kelaspeserta[0]['mkkurNama'].' - Kelas '. $serviceKelas->kelasSemester($kelaspeserta[0]['klsNama']) }} @endif</h3>
             </div>
             <div class="box-body flash-message">
                 @if (session('success'))
@@ -75,7 +76,7 @@
             </div>
             <div class="box-body col-md-12" align="right">
                 <a href="{{ route('dashboard-guru.nilai-kelas', [$kelasId, 'cetak'=>false]) }}" class="btn btn-flat btn-warning" value="Download Nilai Semester"><i class="fa fa-download"></i> Download</a>
-                <a href="{{ route('dashboard-guru.nilai-kelas', [$kelasId, 'cetak'=>true]) }}" class="btn btn-flat btn-info" value="Cetak Nilai Semester"><i class="fa fa-print"></i> Cetak</a>
+                {{-- <a href="{{ route('dashboard-guru.nilai-kelas', [$kelasId, 'cetak'=>true]) }}" class="btn btn-flat btn-info" value="Cetak Nilai Semester"><i class="fa fa-print"></i> Cetak</a> --}}
             </div>
 
             <div class="box-body">

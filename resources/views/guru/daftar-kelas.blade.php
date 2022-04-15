@@ -51,13 +51,14 @@
                 <th>Pilihan</th>
             </tr>
             @if (isset($ampuSemester))
+            @inject('serviceKelas', 'App\Services\Kelas')
             @foreach ($ampuSemester as $key => $value )
             <tr>
                 <td>{{ ++$key }}</td>
                 <td>{{ $value->mapel }}</td>
                 <td>{{ $value->skm }}</td>
                 <td>{{ $value->semester }}</td>
-                <td> <span class="label bg-blue">{{ $value->nama_kelas }}</span></td>
+                <td> <span class="label bg-blue">{{ $serviceKelas->kelasSemester($value->semester,$value->nama_kelas) }}</span></td>
                 <td> 
                     <a href="{{ route('dashboard-guru.peserta', $value->kelas_id) }}" class="btn btn-sm bg-black"> <i class="fa fa-list"></i> Peserta</a>
                     <a href="{{ route('dashboard-guru.kelas-pengumuman', $value->kelas_id) }}" class="btn btn-sm bg-yellow"> <i class="fa fa-bullhorn"></i> Pengumuman</a></td>

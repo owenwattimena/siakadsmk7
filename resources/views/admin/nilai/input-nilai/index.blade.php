@@ -52,6 +52,7 @@
                 <th>Kelas</th>
                 <th>Pilihan</th>
             </tr>
+            @inject('serviceKelas', 'App\Services\Kelas')
             @foreach ($kelas as $key => $value )
             <tr>
                 <td>{{ ++$key }}</td>
@@ -67,7 +68,7 @@
                     {{ '-' }}
                     @endif
                 </td>
-                <td> <span class="label bg-blue">{{ $value->kelas_nama }}</span></td>
+                <td> <span class="label bg-blue">{{ $serviceKelas->kelasSemester($value->mapel_semester ,$value->kelas_nama) }}</span></td>
                 <td> <a href="{{ route('nilai.input-nilai-peserta', $value->kelas_id) }}" class="btn btn-sm bg-black"> <i class="fa fa-list"></i> Peserta</a></td>
                 {{-- <td>{{ $value->paket_semester }}</td> --}}
                 

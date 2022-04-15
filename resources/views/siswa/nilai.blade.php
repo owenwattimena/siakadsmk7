@@ -40,7 +40,7 @@
         @if (isset($dataBelajar))        
         <div class="box-body col-md-12" align="right" >  
             <a href="{{ route('dashboard-siswa.donwload-nilai', [$semesterId, 'cetak' => false]) }}" class="btn btn-flat btn-warning" value="Download Nilai Semester"><i class="fa fa-download"></i> Download</a>
-            <a href="{{ route('dashboard-siswa.donwload-nilai', [$semesterId, 'cetak' => true],) }}" class="btn btn-flat btn-info" value="Cetak Nilai Semester"><i class="fa fa-print"></i> Cetak</a>
+            {{-- <a href="{{ route('dashboard-siswa.donwload-nilai', [$semesterId, 'cetak' => true],) }}" class="btn btn-flat btn-info" value="Cetak Nilai Semester"><i class="fa fa-print"></i> Cetak</a> --}}
           </div>
         <table class="table table-condensed">
             <tr>

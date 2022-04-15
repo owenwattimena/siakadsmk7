@@ -278,6 +278,7 @@ class KelasController extends Controller
                 'matapelajarankurikulum.skm',
                 'kelas.id',
                 'kelas.nama as nama_kelas',
+                'dbs.paket_semester',
                 'dbs_nilai.kd1',
                 'dbs_nilai.kd2',
                 'dbs_nilai.kd3',

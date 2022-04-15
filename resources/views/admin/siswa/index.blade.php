@@ -97,7 +97,7 @@
                             <table class="table">
                                 <tr>
                                     <td width="50px">
-                                        <select name="tipe-siswa" required />
+                                        <select name="tipe_siswa" required />
                                             <option value="baru">Siswa Baru</option>
                                             <option value="lama">Siswa Lama</option>
                                         </select>
@@ -140,6 +140,7 @@
                     <th style="width: 250px">Pilihan</th>
                 </tr>
             </thead>
+            @inject('serviceKelas', 'App\Services\Kelas')
             @foreach ($siswa as $key => $value )
             @php
                 $paketSemester = $value->dbs->last()->paket_semester ?? 0;
@@ -151,7 +152,7 @@
                 <td>{{ $value->user->email }}</td>
                 <td>{{ $value->jurusan->nama }}</td>
                 <td>{{ $value->angkatan }}</td>
-                <td>{{ $paketSemester == 1 || $paketSemester == 2 ? 'X' : '' }}{{ $value->kelompok }}</td>
+                <td>{{ $serviceKelas->kelasSemester($paketSemester, $value->kelompok) }}</td>
                 <td><i class="fa fa-{{ $value->status_aktif == 1 ? 'check' : 'ban'}}"></i> {{ $value->status_aktif == 1 ? 'Aktif' : 'Tidak Aktif'}}</td>
                 <td>
                     <button class="btn btn-sm bg-orange" data-toggle="modal" data-target="#modal-default-{!! $key !!}"> <i class="fa fa-pencil"></i> Ubah</button>

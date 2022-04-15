@@ -1,17 +1,38 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 
-class Kelas{
+class Kelas
+{
+
+    public function kelasSemester(int $paketSemester, String $kelas): String
+    {
+        switch ($paketSemester) {
+            case 1:
+            case 2:
+                return 'X' . $kelas;
+                break;
+            case 3:
+            case 4:
+                return 'XI' . $kelas;
+                break;
+            case 5:
+            case 6:
+                return 'XII' . $kelas;
+                break;
+            default:
+                return '';
+        }
+    }
 
 
     public static function kelas($kelasId)
     {
         $kelas = DB::table('kelas')
             ->join('semester_jurusan', 'semester_jurusan.id', '=', 'kelas.semester_jurusan_id')
-            ->join('dbs', 'dbs.semester_jurusan_id' , '=', 'semester_jurusan.id')
+            ->join('dbs', 'dbs.semester_jurusan_id', '=', 'semester_jurusan.id')
             ->join('semester', 'semester.id', '=', 'semester_jurusan.semester_id')
             ->join('matapelajarankurikulum', 'matapelajarankurikulum.id', '=', 'kelas.mapel_kuri_id')
             ->leftJoin('guru', 'guru.id', '=', 'kelas.guru_id')
@@ -21,5 +42,4 @@ class Kelas{
             ->first();
         return $kelas;
     }
-    
 }

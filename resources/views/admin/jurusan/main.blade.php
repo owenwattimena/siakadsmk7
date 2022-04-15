@@ -18,7 +18,7 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Daftar Jurusan</h3>
-        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Tambah</button>
+        {{-- <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Tambah</button> --}}
         <div class="modal fade" id="modal-default">
             <div class="modal-dialog">
                 <div class="modal-content">

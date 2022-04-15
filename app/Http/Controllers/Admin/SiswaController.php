@@ -133,8 +133,14 @@ class SiswaController extends Controller
     }
 
     public function importSiswa(Request $request){
-        $import = new SiswaImport;
-        Excel::import($import, $request->file('file'));
+        if($request->tipe_siswa == 'lama')
+        {
+            $siswaImport = new SiswaImport($request->tipe_siswa);
+        }else
+        {
+            $siswaImport = new SiswaImport();
+        }
+        Excel::import($siswaImport, $request->file('file'));
         return back();
     }
 }

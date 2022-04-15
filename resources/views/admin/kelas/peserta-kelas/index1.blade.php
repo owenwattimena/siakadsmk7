@@ -20,7 +20,8 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <h3>{{ $peserta->first()->mapel_kuri_id }}-{{ $peserta->first()->mapel }} | Kelas {{ $peserta->first()->nama_kelas }}</h3>
+            @inject('serviceKelas', 'App\Services\Kelas')
+            <h3>{{ $peserta->first()->mapel_kuri_id }}-{{ $peserta->first()->mapel }} | Kelas {{ $serviceKelas->kelasSemester($peserta->first()->paket_semester,$peserta->first()->nama_kelas) }} </h3>
             {{-- <form action="{{ route('nilai.import', $kelasId) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <table class="table">
                     <tbody>  
