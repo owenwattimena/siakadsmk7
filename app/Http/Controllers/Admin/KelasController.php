@@ -29,7 +29,6 @@ class KelasController extends Controller
 
     public function showSiswaRegister(Request $request)
     {
-
         $kelas = DB::table('siswa')
             ->join('jurusan', 'jurusan.id', '=', 'siswa.jurusan_id')
             ->join('dbs', 'dbs.siswa_nis', '=', 'siswa.nis')
@@ -98,7 +97,6 @@ class KelasController extends Controller
                         ->join('dbs', 'dbs.siswa_nis', '=', 'siswa.nis')
                         ->join('semester_jurusan', 'semester_jurusan.id', '=', 'dbs.semester_jurusan_id')
                         ->select('siswa.nis', 'semester_jurusan.id')
-                        // ->where('dbs.paket_semester', '=', $semesterRegister )
                         ->where('semester_jurusan.semester_id', '=', $this->semesterAktifId)
                         ->where('dbs.siswa_nis', '=', $siswaAktif->nis)
                         ->orderBy('siswa.nis')
@@ -149,8 +147,7 @@ class KelasController extends Controller
             // ->groupBy('siswa.angkatan')
             ->orderBy('siswa.angkatan')
             ->get();
-
-        // $kurikulum = $kurikulum->groupBy('angkatan');
+            // $kurikulum = $kurikulum->groupBy('angkatan');
         if ($kurikulum->count()) {
             foreach ($kurikulum as $key => $itemKurikulum) {
                 $cariKelompok = DB::table('siswa')
@@ -171,8 +168,9 @@ class KelasController extends Controller
                         ->where('matapelajarankurikulum.semester', '=', $itemKurikulum->paket_semester)
                         ->orderBy('id')
                         ->get();
-
-
+                    if(!$mapelAktif->count()){
+                        return redirect()->back()->with(AlertFormatter::danger("Registrasi Kelas Gagal. Tidak ada mata pelajaran untuk peserta kelas pada semester ".$itemKurikulum->paket_semester." pada angkatan ".$itemKurikulum->angkatan));
+                    }
                     foreach ($mapelAktif as $key => $itemMapelAktif) {
                         $cekMapelKelas = DB::table('kelas')
                             ->select('id')
@@ -264,12 +262,14 @@ class KelasController extends Controller
             ->join('dbs', 'dbs.id', '=', 'dbs_detail.dbs_id')
             ->join('siswa', 'siswa.nis', '=', 'dbs.siswa_nis')
             ->join('semester_jurusan', 'semester_jurusan.id', '=', 'kelas.semester_jurusan_id')
+            ->join('semester', 'semester.id', '=', 'semester_jurusan.semester_id')
             ->join('matapelajarankurikulum', 'matapelajarankurikulum.id', '=', 'kelas.mapel_kuri_id')
             ->leftJoin('guru', 'guru.id', '=', 'kelas.guru_id')
             ->select(
                 'siswa.nis',
                 'siswa.nama',
                 'semester_jurusan.semester_id',
+                'semester.tahun_pelajaran',
                 'guru.nign',
                 'guru.nip',
                 'guru.nama as nama_guru',

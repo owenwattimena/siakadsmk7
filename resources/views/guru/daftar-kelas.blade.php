@@ -6,7 +6,7 @@
 @section('title')
 <h1>
     Daftar Kelas
-    <small>Control panel</small>
+    <small>{{--Control panel--}}</small>
 </h1>
 @endsection
 @section('breadcrumb')
@@ -61,6 +61,7 @@
                 <td> <span class="label bg-blue">{{ $serviceKelas->kelasSemester($value->semester,$value->nama_kelas) }}</span></td>
                 <td> 
                     <a href="{{ route('dashboard-guru.peserta', $value->kelas_id) }}" class="btn btn-sm bg-black"> <i class="fa fa-list"></i> Peserta</a>
+                    <a href="{{ route('dashboard-guru.kelas-tugas', $value->kelas_id) }}" class="btn btn-sm bg-red"> <i class="fa fa-book"></i> Tugas</a>
                     <a href="{{ route('dashboard-guru.kelas-pengumuman', $value->kelas_id) }}" class="btn btn-sm bg-yellow"> <i class="fa fa-bullhorn"></i> Pengumuman</a></td>
                 {{-- <td>{{ $value->paket_semester }}</td> --}}
             </tr>

@@ -62,8 +62,9 @@ class GaleriController extends Controller
     public function delete($idGaleri)
     {
         $galeri = Galeri::find($idGaleri);
+        $foto = $galeri->foto;
         if ($galeri->delete()) {
-            Storage::delete($galeri->foto);
+            Storage::delete($foto);
             return back()->with(AlertFormatter::success('Galeri berhasil dihapus'));
         }
         return back()->with(AlertFormatter::danger('Galeri gagal dihapus'));

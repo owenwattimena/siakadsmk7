@@ -112,16 +112,19 @@ class Nilai{
             ->join('matapelajarankurikulum', 'matapelajarankurikulum.id', 'kelas.mapel_kuri_id')
             ->join('dbs', 'dbs.id', 'dbs_detail.dbs_id')
             ->join('semester_jurusan', 'semester_jurusan.id', 'dbs.semester_jurusan_id')
+            ->join('semester', 'semester.id', '=', 'semester_jurusan.semester_id')
             ->join('siswa', 'siswa.nis', 'dbs.siswa_nis')
             ->select(
                 'semester_jurusan.semester_id', 
                 'matapelajarankurikulum.id', 
                 'matapelajarankurikulum.nama',
                 'matapelajarankurikulum.skm',
+                'semester.tahun_pelajaran',
                 'guru.nama as guru',
                 'siswa.nis',
                 'siswa.nama as siswa',
                 'siswa.kelompok as kelas',
+                'dbs.paket_semester',
                 'dbs_nilai.kd1',
                 'dbs_nilai.kd2',
                 'dbs_nilai.kd3',

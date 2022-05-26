@@ -58,12 +58,14 @@ class KelasController extends Controller
             ->join('dbs', 'dbs.id', '=', 'dbs_detail.dbs_id')
             ->join('siswa', 'siswa.nis', '=', 'dbs.siswa_nis')
             ->join('semester_jurusan', 'semester_jurusan.id', '=', 'kelas.semester_jurusan_id')
+            ->join('semester', 'semester.id', '=', 'semester_jurusan.semester_id')
             ->join('matapelajarankurikulum', 'matapelajarankurikulum.id', '=', 'kelas.mapel_kuri_id')
             ->leftJoin('guru', 'guru.id', '=', 'kelas.guru_id')
             ->select(
                 'siswa.nis',
                 'siswa.nama',
                 'semester_jurusan.semester_id',
+                'semester.tahun_pelajaran',
                 'guru.nign',
                 'guru.nip',
                 'guru.nama as nama_guru',
@@ -72,6 +74,7 @@ class KelasController extends Controller
                 'matapelajarankurikulum.skm',
                 'kelas.id',
                 'kelas.nama as nama_kelas',
+                'dbs.paket_semester',
                 'dbs_nilai.kd1',
                 'dbs_nilai.kd2',
                 'dbs_nilai.kd3',

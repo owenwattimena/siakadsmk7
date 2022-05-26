@@ -5,7 +5,7 @@
 @section('title')
 <h1>
     Registrasi Siswa Semester
-    <small>Control panel</small>
+    <small>{{--Control panel--}}</small>
 </h1>
 @endsection
 @section('breadcrumb')
@@ -41,6 +41,7 @@
                     <th>Paket Semester</th>
                 </tr>
             </thead>
+            @inject('serviceKelas', 'App\Services\Kelas')
             @foreach ($kelas as $key => $value )
             <tr>
                 <td>{{ ++$key }}</td>
@@ -50,8 +51,7 @@
                 <td>{{ $value->angkatan }}</td>
                 <td>{{ $value->kode }}</td>
                 <td> <button class="btn btn-sm btn-primary">
-                    {{ ($value->paket_semester == 1 || $value->paket_semester  == 2) ? 'X' : '' }}
-                    {{ $value->kelompok }}
+                    {{ $serviceKelas->kelasSemester($value->paket_semester,  $value->kelompok) }}
                 </button></td>
                 <td>{{ $value->paket_semester }}</td>
                 

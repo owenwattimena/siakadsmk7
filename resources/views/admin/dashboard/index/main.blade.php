@@ -2,7 +2,7 @@
 @section('title')
 <h1>
     Dashboard
-    <small>Control panel</small>
+    <small>{{--Control panel--}}</small>
 </h1>
 @endsection
 @section('breadcrumb')

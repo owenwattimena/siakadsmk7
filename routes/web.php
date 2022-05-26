@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Guru\TugasController;
+use App\Http\Controllers\Siswa\TugasController as TugasSiswaController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\NilaiController;
 use App\Http\Controllers\Admin\SaranController;
@@ -153,6 +155,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kelas/{id}/peserta/download', [NilaiController::class, 'downloadPeserta'])->name('dashboard-guru.peserta-download');
         Route::post('kelas/{id}/import-nilai', [NilaiController::class, 'importNilai'])->name('dashboard-guru.import-nilai');
         Route::get('kelas/{id}/nilai', [NilaiController::class, 'cetakNilai'])->name('dashboard-guru.nilai-kelas');
+        
+        Route::get('kelas/{id}/tugas', [TugasController::class, 'index'])->name('dashboard-guru.kelas-tugas');
+        Route::post('kelas/{id}/tugas', [TugasController::class, 'create'])->name('dashboard-guru.kelas-tugas.create');
+        Route::put('kelas/{id}/tugas', [TugasController::class, 'update'])->name('dashboard-guru.kelas-tugas.update');
+        Route::get('kelas/{id}/tugas/{idTugas}', [TugasController::class, 'detail'])->name('dashboard-guru.kelas-tugas.detail');
+        Route::delete('kelas/{id}/tugas/{idTugas}', [TugasController::class, 'delete'])->name('dashboard-guru.kelas-tugas.delete');
+        
         Route::post('kelas/{id}/pengumuman', [KelasGuru::class, 'pengumumanKelasStore'])->name('dashboard-guru.kelas-pengumuman-store');
         Route::put('kelas/{id}/pengumuman', [KelasGuru::class, 'pengumumanKelasUpdate'])->name('dashboard-guru.kelas-pengumuman-update');
         Route::delete('kelas/{id}/pengumuman/{idPengumuman}', [KelasGuru::class, 'pengumumanKelasDelete'])->name('dashboard-guru.kelas-pengumuman-delete');
@@ -161,6 +170,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['siswa'])->group(function(){
         Route::prefix('dashboard-siswa')->group(function(){
             Route::get('/', [NilaiSiswa::class,  'index'])->name('dashboard-siswa');
+            
+            Route::get('/tugas', [TugasSiswaController::class, 'index'])->name('dashboard-siswa.tugas');
+            Route::post('/tugas', [TugasSiswaController::class, 'unggah'])->name('dashboard-siswa.tugas-unggah');
+            
             Route::get('/nilai', [NilaiSiswa::class, 'nilai'])->name('dashboard-siswa.nilai');
             Route::post('/nilai', [NilaiSiswa::class, 'nilai'])->name('dashboard-siswa.nilai');
             // Route::get('/nilai/semester/{id}', [NilaiSiswa::class, 'donwloadNilai'])->name('dashboard-siswa.donwload-nilai');

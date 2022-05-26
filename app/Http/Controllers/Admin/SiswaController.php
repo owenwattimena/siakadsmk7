@@ -25,6 +25,7 @@ class SiswaController extends Controller
         $data['jurusan'] = $jurusan;
         $data['siswa'] = $siswa;
         $data['kurikulum'] = $kurikulum;
+        // dd($data);
         return view('admin.siswa.index', $data);
     }
 
@@ -33,7 +34,7 @@ class SiswaController extends Controller
         $request->validate([
             'nis' => 'required|numeric',
             'nama' => 'required',
-            'email' => 'email|required',
+            // 'email' => 'email|required',
             'jurusan_kode' => 'required',
             'angkatan' => 'required',
             'kurikulum_id' => 'required',

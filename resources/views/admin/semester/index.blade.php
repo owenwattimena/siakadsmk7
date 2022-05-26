@@ -5,7 +5,7 @@
 @section('title')
 <h1>
     Semester Akademik
-    <small>Control panel</small>
+    <small>{{--Control panel--}}</small>
 </h1>
 @endsection
 @section('breadcrumb')

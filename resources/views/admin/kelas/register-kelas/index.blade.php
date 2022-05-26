@@ -8,7 +8,7 @@
 @section('title')
 <h1>
     Registrasi Kelas Semester
-    <small>Control panel</small>
+    <small>{{--Control panel--}}</small>
 </h1>
 @endsection
 @section('breadcrumb')
