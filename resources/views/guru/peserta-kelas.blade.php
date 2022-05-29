@@ -95,20 +95,20 @@
                     </thead>
                     <tbody>
                         @if (! empty($peserta))
-                        <?php $i=1;foreach ($peserta as $key => $itemPeserta):  ?>
+                        <?php $i=1;foreach ($peserta as $key => $value):  ?>
                         <tr>
                             <td>{{$i}}</td>
-                            <td>{{$itemPeserta->nis}}</td>
-                            <td>{{$itemPeserta->nama}}</td>
-                            <td>{{ $itemPeserta->n_raport_pengetahuan ?? '-' }}</td>
-                            <td>{{ $itemPeserta->predikat_pengetahuan ?? '-' }}</td>
-                            <td>{{ $itemPeserta->n_raport_ketrampilan ?? '-' }}</td>
-                            <td>{{ $itemPeserta->predikat_ketrampilan ?? '-' }}</td>
+                            <td>{{$value->nis}}</td>
+                            <td>{{$value->nama}}</td>
+                            <td>{{ $value->n_raport_pengetahuan ?? '-' }}</td>
+                            <td>{{ $value->predikat_pengetahuan ?? '-' }}</td>
+                            <td>{{ $value->n_raport_ketrampilan ?? '-' }}</td>
+                            <td>{{ $value->predikat_ketrampilan ?? '-' }}</td>
                             <td>
                                 <button class="btn btn-small btn-primary" data-toggle="modal" data-target="#modal-default-{{ $key }}"><i class="fa fa-list"></i> Detail</button>
                             </td>
                             <div class="modal fade" id="modal-default-{{ $key }}">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -152,19 +152,19 @@
                                             @php
                                                 $kd = [
                                                     null,
-                                                    $itemPeserta->kd1,
-                                                    $itemPeserta->kd2,
-                                                    $itemPeserta->kd3,
-                                                    $itemPeserta->kd4,
-                                                    $itemPeserta->kd5,
-                                                    $itemPeserta->kd6,
-                                                    $itemPeserta->kd7,
-                                                    $itemPeserta->kd8,
-                                                    $itemPeserta->kd9,
-                                                    $itemPeserta->kd10,
+                                                    $value->kd1,
+                                                    $value->kd2,
+                                                    $value->kd3,
+                                                    $value->kd4,
+                                                    $value->kd5,
+                                                    $value->kd6,
+                                                    $value->kd7,
+                                                    $value->kd8,
+                                                    $value->kd9,
+                                                    $value->kd10,
                                                 ];
                                             @endphp
-                                            @for ($j=1; $j <= 10; $j++)    
+                                            {{-- @for ($j=1; $j <= 10; $j++)    
                                             <div class="row text-center" style="background-color:{{ $j%2 == 0 ? '#EEE' : '#FFF' }}; padding: 5px;">
                                                 <div class="col-sm-6">
                                                     KD{{ $j }}
@@ -173,16 +173,152 @@
                                                     {{ $kd[$j] ?? '-' }}
                                                 </div>
                                             </div>
-                                            @endfor
+                                            @endfor --}}
                 
-                                            <div class="row text-center" style="padding: 5px;">
-                                                <div class="col-sm-6">
-                                                    Rata-rata KD
+                                            <div class="row text-center" style="background-color:#EEE; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD1
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    {{ $itemPeserta->rata_rata_kd ?? '-' }}
+                                                <div class="col-sm-3">
+                                                    {{ $kd[1] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Kinerja 1
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->kinerja1 ?? '-' }}
                                                 </div>
                                             </div>
+                                            <div class="row text-center" style="background-color:#FFF; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD2
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[2] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Kinerja 2
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->kinerja2 ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#EEE; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD3
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[3] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Rata-rata Kinerja
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->rata_rata_kinerja ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#FFF; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD4
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[4] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Proyek 1
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->Proyek1 ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#EEE; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD5
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[5] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Proyek 2
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->Proyek2 ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#FFF; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD6
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[6] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Rata-rata Proyek
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->rata_rata_proyek ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#EEE; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD7
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[7] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Portofolio1
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->portofolio1 ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#FFF; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD8
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[8] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Portofolio2
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->portofolio2 ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#EEE; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD9
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[9] ?? '-' }}
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    Rata-rata Portofolio
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->rata_rata_portofolio ?? '-' }}
+                                                </div>
+                                            </div>
+                                            <div class="row text-center" style="background-color:#FFF; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    KD10
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $kd[10] ?? '-' }}
+                                                </div>
+                                            </div>
+        
+                                            <div class="row text-center" style="background-color:#EEE; padding: 5px;">
+                                                <div class="col-sm-3">
+                                                    Rata-rata KD
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    {{ $value->rata_rata_kd ?? '-' }}
+                                                </div>
+                                            </div>
+
                                             <hr>
                                             <div class="row text-center" style="padding: 5px; margin-top:10px;">
                                                 <div class="col-sm-4">
@@ -197,13 +333,13 @@
                                             </div>
                                             <div class="row text-center" style="padding: 5px; margin-top:10px;">
                                                 <div class="col-sm-4">
-                                                    {{ $itemPeserta->pts ?? '-' }}
+                                                    {{ $value->pts ?? '-' }}
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    {{ $itemPeserta->pas ?? '-' }}
+                                                    {{ $value->pas ?? '-' }}
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    {{ $itemPeserta->n_raport_pengetahuan ?? '-' }}
+                                                    {{ $value->n_raport_pengetahuan ?? '-' }}
                                                 </div>
                                             </div>
                                         </div>
