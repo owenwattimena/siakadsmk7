@@ -81,7 +81,13 @@
                             <td>{{ ++$key }}</td>
                             <td>{{ $item->judul }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td><a href="{{ asset($file) }}" target="_blank">Link File</a></td>
+                            <td>
+                                @if ($item->file!=null)
+                                    <a href="{{ asset($file) }}" target="_blank">Link File</a>
+                                @else
+                                    {!! "-" !!}
+                                @endif
+                            </td>
                             <td>
                                 <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-default-{!! $key !!}"><i class="fa fa-pencil"></i> Ubah</button>
                                 <a href="{{ route('dashboard-guru.kelas-tugas.detail', [$kelasId, $item->id]) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Detail</a>

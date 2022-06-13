@@ -32,18 +32,21 @@ class TugasController extends Controller
         $request->validate([
             'judul' =>'required',
             'keterangan' => 'required',
-            'file' => 'required|file'
         ]);
         
         $file = $request->file('file');
 
-        $path = Storage::putFile('public/tugas', $file);
+        if($file){
+            $path = Storage::putFile('public/tugas', $file);
+        }
 
         $tugas = new Tugas;
         $tugas->kelas_id = $kelasId;
         $tugas->judul = $request->judul;
         $tugas->keterangan = $request->keterangan;
-        $tugas->file = $path;
+        if($file){
+            $tugas->file = $path;
+        }
 
         if($tugas->save())
         {

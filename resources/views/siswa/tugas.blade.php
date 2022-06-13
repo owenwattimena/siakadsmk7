@@ -2,7 +2,7 @@
 @section('title')
 <h1>
     Tugas
-    {{-- <small>{{--Control panel--}}</small> --}}
+    {{-- <small>Control panel</small> --}}
 </h1>
 @endsection
 @section('breadcrumb')
@@ -44,7 +44,12 @@
                             <td>{{ $item->guru }}</td>
                             <td>{{ $item->judul }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td><a href="{{ asset($file) }}">Link File</a></td>
+                            <td>
+                                @if ($item->file!=null)
+                                <a href="{{ asset($file) }}">Link File</a>
+                                @else{!! "-" !!}
+                                @endif
+                            </td>
                             <td>{!! $item->status <= 0 ? '<span class="badge bg-red">Belum Di kerjakan</span>' : '<span class="badge bg-green">Sudah Di kerjakan</span>' !!}</td>
                             <td>
                                 <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-default-{!! $key !!}"><i class="fa fa-upload"></i> Unggah</button>

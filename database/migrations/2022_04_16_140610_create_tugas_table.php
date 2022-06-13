@@ -18,7 +18,7 @@ class CreateTugasTable extends Migration
             $table->unsignedBigInteger('kelas_id');
             $table->string('judul');
             $table->longText('keterangan');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
             $table->foreign('kelas_id')->references('id')->on('kelas');
         });
